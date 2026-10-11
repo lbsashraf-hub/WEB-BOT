@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daeng Ashraf // Bot WA Cyber Anime AI System</title>
+    
+    <!-- FAVICON (Ikon Tab Browser) -->
+    <link rel="icon" type="image/png" href="Logo-web.png">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            dark: '#080b12',
+                            panel: '#0f172a',
+                            cyan: '#00f0ff',
+                            pink: '#ff007f',
+                            purple: '#9d00ff',
+                            green: '#25d366'
+                        }
+                    },
+                    fontFamily: {
+                        orbitron: ['Orbitron', 'sans-serif'],
+                        rajdhani: ['Rajdhani', 'sans-serif'],
+                        fira: ['Fira Code', 'monospace'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #080b12;
+            color: #f1f5f9;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Cyberpunk Grid Background */
+        .cyber-grid {
+            background-size: 30px 30px;
+            background-image: 
+                linear-gradient(to right, rgba(0, 240, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 240, 255, 0.04) 1px, transparent 1px);
+        }
+
+        /* Glowing Effects */
+        .neon-glow-cyan {
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+        }
+        .neon-glow-pink {
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.3);
+        }
+        .neon-glow-purple {
+            box-shadow: 0 0 15px rgba(157, 0, 255, 0.3);
+        }
+
+        .text-gradient-cyber {
+            background: linear-gradient(135deg, #00f0ff 0%, #ff007f 50%, #9d00ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Glassmorphism Panel */
+        .cyber-glass {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 240, 255, 0.18);
+        }
+
+        /* Scanline Animasi */
+        .scanline {
+            width: 100%;
+            height: 2px;
+            background: rgba(0, 240, 255, 0.4);
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: scan 4s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes scan {
+            0% { top: 0%; opacity: 0; }
+            50% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #080b12;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #00f0ff;
+            border-radius: 3px;
+        }
+
+        /* Glitch Animation */
+        @keyframes glitch {
+            0% { transform: translate(0) }
+            20% { transform: translate(-2px, 2px) }
+            40% { transform: translate(-2px, -2px) }
+            60% { transform: translate(2px, 2px) }
+            80% { transform: translate(2px, -2px) }
+            100% { transform: translate(0) }
+        }
+        .glitch-effect:hover {
+            animation: glitch 0.2s ease infinite;
+        }
+    </style>
+</head>
+<body class="cyber-grid relative min-h-screen">
+
+    <!-- OPENING ANIMATION OVERLAY -->
+    <div id="openingOverlay" class="fixed inset-0 z-[100] bg-cyber-dark flex flex-col items-center justify-center p-4 transition-all duration-700">
+        <div class="max-w-md w-full cyber-glass p-6 rounded-2xl border-2 border-cyber-cyan/50 neon-glow-cyan relative overflow-hidden">
+            <div class="scanline"></div>
+            
+            <!-- Opening Logo Badge (LOGO FOTO PNG) -->
+            <div class="flex justify-center mb-4">
+                <img src="Logo-web.png" alt="Logo" class="w-16 h-16 object-contain rounded-xl border-2 border-cyber-cyan neon-glow-cyan bg-cyber-panel p-1">
+            </div>
+
+            <h2 class="font-orbitron text-center font-black text-xl text-white tracking-widest mb-1">
+                DAENG <span class="text-cyber-cyan">ASHRAF</span>
+            </h2>
+            <div class="text-center font-rajdhani text-xs text-cyber-pink tracking-widest uppercase font-semibold mb-6">
+                BOT WA DAENG v0.1 // INITIALIZING
+            </div>
+
+            <!-- Terminal Typewriter Console -->
+            <div class="bg-black/80 rounded-lg p-3 font-fira text-[11px] text-cyber-cyan border border-cyber-cyan/30 h-28 overflow-hidden mb-5 space-y-1">
+                <div id="typeText1" class="opacity-0"> > [SYSTEM INIT] Loading AI Core...</div>
+                <div id="typeText2" class="opacity-0"> > [CONNECTING] WhatsApp Web API...</div>
+                <div id="typeText3" class="opacity-0 text-cyber-pink"> > [MODULES] Business, Org, School ACTIVE.</div>
+                <div id="typeText4" class="opacity-0 text-cyber-green font-bold"> > [STATUS] System Online & Operational!</div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="space-y-1.5 mb-6">
+                <div class="flex justify-between font-rajdhani text-xs text-slate-300 font-semibold">
+                    <span>LOADING CORE SYSTEM</span>
+                    <span id="progressPercent" class="text-cyber-cyan font-orbitron">0%</span>
+                </div>
+                <div class="w-full h-2 bg-slate-900 rounded-full overflow-hidden border border-cyber-cyan/30">
+                    <div id="progressBar" class="h-full bg-gradient-to-r from-cyber-cyan via-cyber-purple to-cyber-pink w-0 transition-all duration-300"></div>
+                </div>
+            </div>
+
+            <!-- Access Enter Button -->
+            <button id="enterBtn" onclick="closeOpening()" disabled class="w-full py-3 bg-slate-800 text-slate-500 font-orbitron font-extrabold text-xs tracking-wider rounded transition-all flex items-center justify-center gap-2 cursor-not-allowed">
+                <span>INITIALIZING...</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Particle Background Canvas -->
+    <canvas id="particleCanvas" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
+
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-cyber-dark/95 backdrop-blur-md border-b border-cyber-cyan/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="flex items-center justify-between h-14 sm:h-16">
+                <!-- Logo Navbar (LOGO FOTO PNG) -->
+                <div class="flex items-center gap-2.5">
+                    <img src="Logo-web.png" alt="Logo" class="w-9 h-9 object-contain rounded bg-cyber-panel border border-cyber-cyan/50 p-0.5 neon-glow-cyan">
+                    <div>
+                        <span class="font-orbitron font-extrabold text-xs sm:text-base tracking-wider text-white block leading-tight">DAENG <span class="text-cyber-cyan">ASHRAF</span></span>
+                        <span class="font-rajdhani text-[9px] sm:text-[10px] text-cyber-pink tracking-widest font-semibold block uppercase">BOT WA VO.1</span>
+                    </div>
+                </div>
+
+                <!-- Navigation Links (Desktop) -->
+                <div class="hidden md:flex items-center space-x-5 font-rajdhani text-sm tracking-wider font-semibold">
+                    <a href="#fitur" class="hover:text-cyber-cyan transition-colors">PILLAR SYSTEM</a>
+                    <a href="#custom-script" class="hover:text-cyber-green transition-colors">CUSTOM SCRIPT</a>
+                    <a href="#simulator" class="hover:text-cyber-pink transition-colors">LIVE SIMULATOR</a>
+                    <a href="#ulasan" class="hover:text-cyber-cyan transition-colors">REVIEWS</a>
+                    <a href="#harga" class="hover:text-cyber-cyan transition-colors">PRICING</a>
+                    <a href="#faq" class="hover:text-cyber-purple transition-colors">FAQ</a>
+                </div>
+
+                <!-- Right Action Button & Burger Toggle -->
+                <div class="flex items-center gap-2">
+                    <a href="https://wa.me/6285770246502?text=Halo%20Daeng%20Ashraf,%20Saya%20tertarik%20dengan%20Bot%20WA%20Cyber%20System" target="_blank" class="hidden sm:flex px-3 py-1.5 sm:px-4 sm:py-2 font-orbitron text-[10px] sm:text-xs font-bold text-white bg-gradient-to-r from-cyber-cyan via-cyber-purple to-cyber-pink hover:opacity-90 transition-all rounded shadow-md neon-glow-cyan items-center gap-1.5">
+                        <i class="fab fa-whatsapp text-sm"></i>
+                        <span>CONNECT WA</span>
+                    </a>
+
+                    <!-- Mobile Burger Button -->
+                    <button id="burgerBtn" onclick="toggleMobileMenu()" class="md:hidden w-9 h-9 flex items-center justify-center rounded bg-cyber-panel border border-cyber-cyan/40 text-cyber-cyan hover:bg-cyber-cyan hover:text-cyber-dark transition-all">
+                        <i id="burgerIcon" class="fas fa-bars text-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden bg-cyber-dark/98 border-b border-cyber-cyan/30 px-4 pt-3 pb-5 space-y-3 font-rajdhani text-sm tracking-wider font-semibold">
+            <a href="#fitur" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 hover:text-cyber-cyan border-b border-slate-800/60"><i class="fas fa-cubes text-cyber-cyan mr-2"></i>PILLAR SYSTEM</a>
+            <a href="#custom-script" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 hover:text-cyber-green border-b border-slate-800/60"><i class="fas fa-code text-cyber-green mr-2"></i>CUSTOM SCRIPT</a>
+            <a href="#simulator" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 hover:text-cyber-pink border-b border-slate-800/60"><i class="fas fa-robot text-cyber-pink mr-2"></i>LIVE SIMULATOR</a>
+            <a href="#ulasan" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 hover:text-cyber-cyan border-b border-slate-800/60"><i class="fas fa-star text-cyber-cyan mr-2"></i>REVIEWS</a>
+            <a href="#harga" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 hover:text-cyber-cyan border-b border-slate-800/60"><i class="fas fa-tags text-cyber-cyan mr-2"></i>PRICING</a>
+            <a href="#faq" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 hover:text-cyber-purple"><i class="fas fa-question-circle text-cyber-purple mr-2"></i>FAQ</a>
+            <a href="https://wa.me/6285770246502?text=Halo%20Daeng%20Ashraf,%20Saya%20tertarik%20dengan%20Bot%20WA%20Cyber%20System" target="_blank" class="w-full mt-2 py-2 font-orbitron text-xs font-bold text-white bg-gradient-to-r from-cyber-cyan via-cyber-purple to-cyber-pink rounded text-center flex items-center justify-center gap-2">
+                <i class="fab fa-whatsapp text-sm"></i> CONNECT WA
+            </a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-24 pb-8 sm:pt-32 sm:pb-16 px-4 max-w-7xl mx-auto z-10">
+        <div class="text-center max-w-3xl mx-auto">
+            <!-- Badge Top -->
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyber-panel/80 border border-cyber-cyan/40 text-cyber-cyan font-rajdhani font-semibold text-xs mb-3 animate-pulse">
+                <i class="fas fa-shield-halved text-cyber-green text-xs"></i> BOT AUTOMATION FOR BUSINESS, ORGANIZATIONS & SCHOOLS
+            </div>
+
+            <!-- Title Header -->
+            <h1 class="font-orbitron text-2xl sm:text-5xl font-black tracking-tight text-white mb-3 leading-tight">
+                INTELLIGENT BOT WA <br>
+                <span class="text-gradient-cyber">CYBER ANIME SYSTEM</span>
+            </h1>
+
+            <!-- Dynamic Subtitle -->
+            <p class="font-sans text-slate-300 text-xs sm:text-base max-w-xl mx-auto mb-6 leading-relaxed">
+                Kelola <span class="text-cyber-cyan font-semibold">Bisnis</span>, <span class="text-cyber-pink font-semibold">Organisasi</span>, dan <span class="text-cyber-purple font-semibold">Yayasan Sekolah</span> secara otomatis melalui Bot WhatsApp Daeng Ashraf dengan antarmuka futuristik & fitur serba fleksibel.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-4 max-w-md mx-auto">
+                <a href="#simulator" class="w-full sm:w-auto px-5 py-2.5 font-orbitron font-bold text-xs bg-cyber-cyan text-cyber-dark hover:bg-white transition-all rounded shadow-md neon-glow-cyan flex items-center justify-center gap-2 glitch-effect">
+                    <i class="fas fa-play text-xs"></i> COBA LIVE BOT SIMULATOR
+                </a>
+                <a href="#harga" class="w-full sm:w-auto px-5 py-2.5 font-orbitron font-bold text-xs bg-cyber-panel border border-cyber-pink/50 text-cyber-pink hover:bg-cyber-pink hover:text-white transition-all rounded flex items-center justify-center gap-2">
+                    <i class="fas fa-tags text-xs"></i> CEK HARGA SEWA & SCRIPT
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PILLAR SYSTEM SECTION -->
+    <section id="fitur" class="py-8 sm:py-12 px-4 max-w-7xl mx-auto z-10 relative scroll-mt-20">
+        <div class="text-center mb-6">
+            <span class="font-rajdhani text-cyber-pink font-bold tracking-widest text-xs sm:text-sm uppercase block">// SYSTEM MODULES</span>
+            <h2 class="font-orbitron text-xl sm:text-3xl font-extrabold text-white">3 PILAR UTAMA LAYANAN</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+            <!-- Pillar 1: Bisnis -->
+            <div class="cyber-glass p-5 rounded-xl border border-cyber-cyan/30 hover:border-cyber-cyan transition-all relative overflow-hidden group">
+                <div class="w-10 h-10 rounded-lg bg-cyber-cyan/10 border border-cyber-cyan text-cyber-cyan flex items-center justify-center text-lg mb-3">
+                    <i class="fas fa-store"></i>
+                </div>
+                <h3 class="font-orbitron font-bold text-base text-white mb-2">1. BOT BISNIS & UMKM</h3>
+                <p class="text-slate-400 text-xs mb-3 leading-relaxed">Sistem auto-reply katalog, order otomatis, integrasi payment gateway, invoice generator, & CS AI 24 Jam.</p>
+                <ul class="text-xs text-slate-300 space-y-1.5 font-rajdhani font-semibold">
+                    <li class="flex items-center gap-2"><i class="fas fa-check text-cyber-cyan text-[10px]"></i> 1 Nomor WA Auto Reply</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-check text-cyber-cyan text-[10px]"></i> Fitur Katalog</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-check text-cyber-cyan text-[10px]"></i> Reminder Untuk Karyawan/Top Up Saldo Reseller</li>
+                </ul>
+            </div>
+
+            <!-- Pillar 2: Organisasi -->
+            <div class="cyber-glass p-5 rounded-xl border border-cyber-pink/30 hover:border-cyber-pink transition-all relative overflow-hidden group">
+                <div class="w-10 h-10 rounded-lg bg-cyber-pink/10 border border-cyber-pink text-cyber-pink flex items-center justify-center text-lg mb-3">
+                    <i class="fas fa-users-gear"></i>
+                </div>
+                <h3 class="font-orbitron font-bold text-base text-white mb-2">2. BOT ORGANISASI & KOMUNITAS</h3>
+                <p class="text-slate-400 text-xs mb-3 leading-relaxed">Pengelolaan anggota, absensi rapat, reminder iuran bulanan, notifikasi kegiatan, dan ticketing event.</p>
+                <ul class="text-xs text-slate-300 space-y-1.5 font-rajdhani font-semibold">
+                    <li class="flex items-center gap-2"><i class="fas fa-check text-cyber-pink text-[10px]"></i> Database Anggota Terpusat</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-check text-cyber-pink text-[10px]"></i> Auto Reminder Event & Iuran</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-check text-cyber-pink text-[10px]"></i> Verifikasi Pendaftaran Komunitas</li>
+                </ul>
+            </div>
+
+            <!-- Pillar 3: Sekolah -->
+            <div class="cyber-glass p-5 rounded-xl border border-cyber-purple/30 hover:border-cyber-purple transition-all relative overflow-hidden group">
+                <div class="w-10 h-10 rounded-lg bg-cyber-purple/10 border border-cyber-purple text-cyber-purple flex items-center justify-center text-lg mb-3">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3 class="font-orbitron font-bold text-base text-white mb-2">3. BOT YAYASAN SEKOLAH</h3>
+                <p class="text-slate-400 text-xs mb-3 leading-relaxed">Cek tagihan SPP, notifikasi absensi siswa ke orang tua, pengumuman nilai, dan info akademik.</p>
+                <ul class="text-xs text-slate-300 space-y-1.5 font-rajdhani font-semibold">
+                    <li class="flex items-center gap-2"><i class="fas fa-check text-cyber-purple text-[10px]"></i> Fitur Absen & Rekap Absen</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-check text-cyber-purple text-[10px]"></i> Daftar Nama Lunas & Belom Lunas SPP</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-check text-cyber-purple text-[10px]"></i> Reminder Grup</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CUSTOM SCRIPT REQUEST SECTION -->
+    <section id="custom-script" class="py-8 sm:py-12 px-4 max-w-4xl mx-auto z-10 relative scroll-mt-20">
+        <div class="text-center mb-6">
+            <span class="font-rajdhani text-cyber-green font-bold tracking-widest text-xs uppercase block">// CUSTOM REQUEST SCRIPT</span>
+            <h2 class="font-orbitron text-xl sm:text-3xl font-extrabold text-white">CUSTOM REQUEST SCRIPT BOT WA</h2>
+        </div>
+
+        <div class="cyber-glass p-5 sm:p-7 rounded-2xl border-2 border-cyber-green/50 relative shadow-xl neon-glow-cyan overflow-hidden">
+            <div class="scanline"></div>
+
+            <!-- Header Panel -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5 border-b border-slate-800 pb-4">
+                <div>
+                    <h3 class="font-orbitron font-bold text-base sm:text-lg text-white">Punya Permintaan Fitur / Script Khusus?</h3>
+                    <p class="text-xs text-slate-300 mt-1 leading-relaxed">
+                        Butuh command tambahan, integrasi database, atau fitur kustom untuk bot WhatsApp Anda? Request sekarang!
+                    </p>
+                </div>
+                <div class="self-start sm:self-center flex-shrink-0">
+                    <span class="inline-block bg-cyber-green text-cyber-dark font-orbitron text-xs font-extrabold px-3 py-1.5 rounded shadow">
+                        HARGA: Rp 25.000
+                    </span>
+                </div>
+            </div>
+
+             <!-- Form Inputs -->
+            <div class="space-y-4 font-sans text-xs">
+                <div>
+                    <label class="block font-orbitron text-slate-300 mb-1.5 font-semibold">Nama / Identitas Pemesan</label>
+                    <input type="text" id="custName" placeholder="Contoh: Budi Santoso" class="w-full bg-slate-950 border border-slate-700 focus:border-cyber-green rounded-lg px-3.5 py-2.5 text-white outline-none transition-all">
+                </div>
+
+                <div>
+                    <label class="block font-orbitron text-slate-300 mb-1.5 font-semibold">Detail Request / Fitur Script yang Diinginkan</label>
+                    <textarea id="custDetail" rows="4" placeholder="Jelaskan detail fitur script yang ingin dibuat (contoh: Buatkan plugin command .cekresi JNE/JNT atau fitur sambutan grup otomatis)..." class="w-full bg-slate-950 border border-slate-700 focus:border-cyber-green rounded-lg px-3.5 py-2.5 text-white outline-none resize-none transition-all"></textarea>
+                </div>
+
+                <button onclick="sendCustomRequest()" class="w-full py-3 bg-cyber-green hover:bg-white text-cyber-dark font-orbitron font-extrabold text-xs tracking-wider rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer">
+                    <i class="fab fa-whatsapp text-base"></i> <span>KIRIM REQUEST SCRIPT (RP 25RB)</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIVE SIMULATOR SECTION -->
+    <section id="simulator" class="py-8 sm:py-12 px-4 max-w-4xl mx-auto z-10 relative scroll-mt-20">
+        <div class="text-center mb-6">
+            <span class="font-rajdhani text-cyber-cyan font-bold tracking-widest text-xs uppercase block">// LIVE INTERACTIVE TEST</span>
+            <h2 class="font-orbitron text-xl sm:text-3xl font-extrabold text-white">SIMULATOR BOT ASHRAF AI</h2>
+        </div>
+
+        <div class="cyber-glass rounded-xl border border-cyber-cyan/40 overflow-hidden shadow-2xl relative">
+            <div class="scanline"></div>
+
+            <!-- Simulator Header -->
+            <div class="bg-slate-900/90 px-4 py-3 border-b border-cyber-cyan/20 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-cyber-cyan/20 border border-cyber-cyan flex-shrink-0 flex items-center justify-center text-cyber-cyan">
+                        <i class="fas fa-robot text-xs"></i>
+                    </div>
+                    <div>
+                        <div class="font-orbitron font-bold text-xs text-white">Daeng Ashraf <span class="text-[9px] text-cyber-green font-sans px-1.5 py-0.5 rounded bg-cyber-green/10 border border-cyber-green/30">ONLINE</span></div>
+                        <div class="text-[10px] text-slate-400">Response Time: 0.2s</div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-1.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
+                </div>
+            </div>
+
+            <!-- Chat Window -->
+            <div id="chatWindow" class="p-4 h-64 sm:h-72 overflow-y-auto space-y-3 font-sans text-xs bg-slate-950/60">
+                <!-- Bot Greeting -->
+                <div class="flex gap-2.5 max-w-[85%]">
+                    <div class="w-6 h-6 rounded bg-cyber-cyan/20 border border-cyber-cyan flex-shrink-0 flex items-center justify-center text-[10px] text-cyber-cyan">AI</div>
+                    <div class="bg-slate-900 border border-cyber-cyan/30 p-2.5 rounded-r-lg rounded-bl-lg text-slate-200">
+                        Assalamualaikum! 👋 Saya Bot **Daeng Ashraf**. Silakan ketik atau klik command berikut untuk mencoba simulator:
+                        <div class="mt-2 flex flex-wrap gap-1.5 font-rajdhani">
+                            <button onclick="sendQuickCommand('!katalog')" class="bg-cyber-cyan/10 hover:bg-cyber-cyan/20 border border-cyber-cyan/40 text-cyber-cyan px-2 py-0.5 rounded">!katalog</button>
+                            <button onclick="sendQuickCommand('!iuran')" class="bg-cyber-pink/10 hover:bg-cyber-pink/20 border border-cyber-pink/40 text-cyber-pink px-2 py-0.5 rounded">!iuran</button>
+                            <button onclick="sendQuickCommand('!spp')" class="bg-cyber-purple/10 hover:bg-cyber-purple/20 border border-cyber-purple/40 text-cyber-purple px-2 py-0.5 rounded">!spp</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Bar -->
+            <div class="p-3 bg-slate-900/90 border-t border-cyber-cyan/20 flex gap-2">
+                <input type="text" id="chatInput" placeholder="Ketik perintah (contoh: !katalog, !spp, !iuran)..." class="flex-1 bg-slate-950 border border-slate-700 focus:border-cyber-cyan rounded px-3 py-2 text-xs text-white outline-none">
+                <button onclick="sendMessage()" class="bg-cyber-cyan text-cyber-dark px-4 py-2 rounded font-orbitron font-bold text-xs hover:bg-white transition-all flex items-center gap-1">
+                    <i class="fas fa-paper-plane text-xs"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ULASAN / REVIEWS SECTION -->
+    <section id="ulasan" class="py-8 sm:py-12 px-4 max-w-7xl mx-auto z-10 relative scroll-mt-20">
+        <div class="text-center mb-6">
+            <span class="font-rajdhani text-cyber-cyan font-bold tracking-widest text-xs uppercase block">// TESTIMONIALS & REVIEWS</span>
+            <h2 class="font-orbitron text-xl sm:text-3xl font-extrabold text-white">APA KATA MEREKA?</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-8">
+            <!-- Review 1 -->
+            <div class="cyber-glass p-5 rounded-xl border border-cyber-cyan/30 flex flex-col justify-between">
+                <div>
+                    <div class="flex text-yellow-400 text-xs mb-3 space-x-1">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-slate-300 text-xs italic mb-4 leading-relaxed">"Bot WA Queen Laundry sangat membantu rekam kas harian dan absen karyawan jadi otomatis. Top banget!"</p>
+                </div>
+                <div class="flex items-center gap-2.5 pt-3 border-t border-slate-800">
+                    <div class="w-8 h-8 rounded-full bg-cyber-cyan/20 border border-cyber-cyan flex items-center justify-center font-orbitron font-bold text-xs text-cyber-cyan">QL</div>
+                    <div>
+                        <div class="font-orbitron font-bold text-xs text-white">Bu Mus</div>
+                        <div class="text-[10px] text-slate-400 font-rajdhani">Paket Bisnis & UMKM</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 2 -->
+            <div class="cyber-glass p-5 rounded-xl border border-cyber-pink/30 flex flex-col justify-between">
+                <div>
+                    <div class="flex text-yellow-400 text-xs mb-3 space-x-1">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-slate-300 text-xs italic mb-4 leading-relaxed">"Sistem absensi guru & rekam jadwal SMA Plus Annur via bot WhatsApp ini sangat responsif dan mudah digunakan."</p>
+                </div>
+                <div class="flex items-center gap-2.5 pt-3 border-t border-slate-800">
+                    <div class="w-8 h-8 rounded-full bg-cyber-pink/20 border border-cyber-pink flex items-center justify-center font-orbitron font-bold text-xs text-cyber-pink">SA</div>
+                    <div>
+                        <div class="font-orbitron font-bold text-xs text-white">Rizal (Guru SMK 12 Pluit)</div>
+                        <div class="text-[10px] text-slate-400 font-rajdhani">Paket Sekolah Enterprise</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 3 -->
+            <div class="cyber-glass p-5 rounded-xl border border-cyber-purple/30 flex flex-col justify-between">
+                <div>
+                    <div class="flex text-yellow-400 text-xs mb-3 space-x-1">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-slate-300 text-xs italic mb-4 leading-relaxed">"Pesan custom script cuma 25rb tapi hasilnya cepat jadi dan sesuai request. Pelayanan Daeng Ashraf ramah dan gercep!"</p>
+                </div>
+                <div class="flex items-center gap-2.5 pt-3 border-t border-slate-800">
+                    <div class="w-8 h-8 rounded-full bg-cyber-purple/20 border border-cyber-purple flex items-center justify-center font-orbitron font-bold text-xs text-cyber-purple">BS</div>
+                    <div>
+                        <div class="font-orbitron font-bold text-xs text-white">Budi Santoso</div>
+                        <div class="text-[10px] text-slate-400 font-rajdhani">Custom Script Client</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Tambah Ulasan -->
+        <div class="max-w-2xl mx-auto cyber-glass p-5 sm:p-6 rounded-xl border border-cyber-cyan/40">
+            <h3 class="font-orbitron font-bold text-sm text-white mb-2 text-center">Tulis Ulasan / Testimonial Anda</h3>
+            <p class="text-slate-400 text-xs text-center mb-4">Ulasan Anda akan dikirim langsung ke WhatsApp Daeng Ashraf untuk ditampilkan di website.</p>
+            
+            <div class="space-y-3.5 text-xs">
+                <div>
+                    <label class="block font-orbitron text-slate-300 mb-1 font-semibold">Nama / Instansi</label>
+                    <input type="text" id="reviewerName" placeholder="Contoh: Andi Pratama" class="w-full bg-slate-950 border border-slate-700 focus:border-cyber-cyan rounded px-3 py-2 text-white outline-none">
+                </div>
+                <div>
+                    <label class="block font-orbitron text-slate-300 mb-1 font-semibold">Pesan Ulasan / Testimoni</label>
+                    <textarea id="reviewerMessage" rows="3" placeholder="Tuliskan pengalaman Anda menggunakan bot atau layanan Daeng Ashraf..." class="w-full bg-slate-950 border border-slate-700 focus:border-cyber-cyan rounded px-3 py-2 text-white outline-none resize-none"></textarea>
+                </div>
+                <button onclick="sendReview()" class="w-full py-2.5 bg-cyber-cyan hover:bg-white text-cyber-dark font-orbitron font-bold text-xs rounded transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md">
+                    <i class="fab fa-whatsapp text-sm"></i> <span>KIRIM ULASAN VIA WHATSAPP</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING SECTION (PENYEWAAN & SCRIPT BOT WA) -->
+    <section id="harga" class="py-8 sm:py-12 px-4 max-w-7xl mx-auto z-10 relative scroll-mt-20">
+        <div class="text-center mb-6">
+            <span class="font-rajdhani text-cyber-pink font-bold tracking-widest text-xs uppercase block">// ACCESS PLANS & PRICING</span>
+            <h2 class="font-orbitron text-xl sm:text-3xl font-extrabold text-white">HARGA PENYEWAAN & SCRIPT BOT WA</h2>
+            <p class="text-slate-400 text-xs sm:text-sm mt-2 max-w-xl mx-auto">Pilih layanan sewa bot siap pakai (termasuk server cloud 24/7) atau beli kepemilikan full script bot untuk di-deploy sendiri.</p>
+        </div>
+
+        <!-- Tab Switcher (Sewa vs Script) -->
+        <div class="flex justify-center mb-8">
+            <div class="bg-slate-900 p-1 rounded-xl border border-cyber-cyan/30 flex gap-2 font-orbitron text-xs">
+                <button onclick="switchPricing('sewa')" id="btnSewa" class="px-5 py-2 rounded-lg bg-cyber-cyan text-cyber-dark font-extrabold transition-all shadow-md">
+                    <i class="fas fa-server mr-1.5"></i> PENYEWAAN BOT (BULANAN)
+                </button>
+                <button onclick="switchPricing('script')" id="btnScript" class="px-5 py-2 rounded-lg text-slate-300 hover:text-white font-extrabold transition-all">
+                    <i class="fas fa-code mr-1.5"></i> PEMBELIAN SCRIPT BOT
+                </button>
+            </div>
+        </div>
+
+        <!-- PRICING 1: PENYEWAAN BOT WA -->
+        <div id="pricingSewa" class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+            <!-- Paket Sewa 1 -->
+            <div class="cyber-glass p-5 rounded-xl border border-slate-700 hover:border-cyber-cyan transition-all flex flex-col justify-between">
+                <div>
+                    <span class="text-[10px] font-rajdhani font-bold px-2.5 py-1 rounded bg-cyber-cyan/10 text-cyber-cyan border border-cyber-cyan/30 inline-block mb-3">SEWA BULANAN</span>
+                    <h3 class="font-orbitron font-bold text-base text-white">SEWA STARTER BOT</h3>
+                    <div class="my-3">
+                        <span class="font-orbitron text-2xl font-black text-cyber-cyan">Rp 65.000</span>
+                        <span class="text-slate-400 text-xs">/ bulan</span>
+                    </div>
+                    <p class="text-slate-400 text-xs mb-4">Cocok untuk UMKM, toko online & grup reseller.</p>
+                    <ul class="text-xs text-slate-300 space-y-2 mb-5 font-rajdhani">
+                        <li><i class="fas fa-check text-cyber-cyan mr-1.5"></i> 1 Nomor WA Auto Reply Aktif</li>
+                        <li><i class="fas fa-check text-cyber-cyan mr-1.5"></i> Termasuk Server Cloud 24/7</li>
+                        <li><i class="fas fa-check text-cyber-cyan mr-1.5"></i> Fitur Katalog & Order Produk</li>
+                        <li><i class="fas fa-check text-cyber-cyan mr-1.5"></i> Free Maintenance Bulanan</li>
+                    </ul>
+                </div>
+                <a href="https://wa.me/6285770246502?text=Halo%20Daeng%20Ashraf,%20saya%20mau%20*Sewa%20Paket%20Starter%20Bot*%20(Rp%2065.000/bulan)." target="_blank" class="w-full text-center py-2.5 bg-slate-800 hover:bg-cyber-cyan hover:text-cyber-dark text-white font-orbitron font-bold text-xs rounded transition-all flex items-center justify-center gap-2">
+                    <i class="fab fa-whatsapp text-sm"></i> SEWA PAKET STARTER
+                </a>
+            </div>
+
+            <!-- Paket Sewa 2 (Populer) -->
+            <div class="cyber-glass p-5 rounded-xl border-2 border-cyber-pink relative shadow-xl neon-glow-pink flex flex-col justify-between">
+                <div>
+                    <div class="absolute -top-3 right-4 bg-cyber-pink text-white font-orbitron text-[9px] font-extrabold px-2 py-0.5 rounded">TERLARIS</div>
+                    <span class="text-[10px] font-rajdhani font-bold px-2.5 py-1 rounded bg-cyber-pink/10 text-cyber-pink border border-cyber-pink/30 inline-block mb-3">SEWA BULANAN</span>
+                    <h3 class="font-orbitron font-bold text-base text-white">SEWA PRO ORGANIZATION</h3>
+                    <div class="my-3">
+                        <span class="font-orbitron text-2xl font-black text-cyber-pink">Rp 75.000</span>
+                        <span class="text-slate-400 text-xs">/ bulan</span>
+                    </div>
+                    <p class="text-slate-400 text-xs mb-4">Solusi instansi, komunitas & organisasi.</p>
+                    <ul class="text-xs text-slate-300 space-y-2 mb-5 font-rajdhani">
+                        <li><i class="fas fa-check text-cyber-pink mr-1.5"></i> Database Anggota Terpusat</li>
+                        <li><i class="fas fa-check text-cyber-pink mr-1.5"></i> Server Cloud Aktif 24/7</li>
+                        <li><i class="fas fa-check text-cyber-pink mr-1.5"></i> Auto Reminder Iuran & Kegiatan</li>
+                        <li><i class="fas fa-check text-cyber-pink mr-1.5"></i> Custom Command Grup Khusus</li>
+                    </ul>
+                </div>
+                <a href="https://wa.me/6285770246502?text=Halo%20Daeng%20Ashraf,%20saya%20mau%20*Sewa%20Paket%20Pro%20Organization*%20(Rp%2075.000/bulan)." target="_blank" class="w-full text-center py-2.5 bg-cyber-pink hover:bg-white hover:text-cyber-dark text-white font-orbitron font-bold text-xs rounded transition-all flex items-center justify-center gap-2">
+                    <i class="fab fa-whatsapp text-sm"></i> SEWA PAKET PRO
+                </a>
+            </div>
+
+            <!-- Paket Sewa 3 -->
+            <div class="cyber-glass p-5 rounded-xl border border-slate-700 hover:border-cyber-purple transition-all flex flex-col justify-between">
+                <div>
+                    <span class="text-[10px] font-rajdhani font-bold px-2.5 py-1 rounded bg-cyber-purple/10 text-cyber-purple border border-cyber-purple/30 inline-block mb-3">SEWA BULANAN</span>
+                    <h3 class="font-orbitron font-bold text-base text-white">SEWA SCHOOL ENTERPRISE</h3>
+                    <div class="my-3">
+                        <span class="font-orbitron text-2xl font-black text-cyber-purple">Rp 85.000</span>
+                        <span class="text-slate-400 text-xs">/ bulan</span>
+                    </div>
+                    <p class="text-slate-400 text-xs mb-4">Sistem lengkap yayasan sekolah digital.</p>
+                    <ul class="text-xs text-slate-300 space-y-2 mb-5 font-rajdhani">
+                        <li><i class="fas fa-check text-cyber-purple mr-1.5"></i> Fitur Absen Guru/Siswa & Rekap</li>
+                        <li><i class="fas fa-check text-cyber-purple mr-1.5"></i> Cek Status Lunas/Belom SPP</li>
+                        <li><i class="fas fa-check text-cyber-purple mr-1.5"></i> Server Cloud Enterprise 24/7</li>
+                        <li><i class="fas fa-check text-cyber-purple mr-1.5"></i> Prioritas Support & Update</li>
+                    </ul>
+                </div>
+                <a href="https://wa.me/6285770246502?text=Halo%20Daeng%20Ashraf,%20saya%20mau%20*Sewa%20Paket%20School%20Enterprise*%20(Rp%2085.000/bulan)." target="_blank" class="w-full text-center py-2.5 bg-slate-800 hover:bg-cyber-purple hover:text-white text-white font-orbitron font-bold text-xs rounded transition-all flex items-center justify-center gap-2">
+                    <i class="fab fa-whatsapp text-sm"></i> SEWA PAKET SCHOOL
+                </a>
+            </div>
+        </div>
+
+        <!-- PRICING 2: PEMBELIAN SCRIPT BOT (Hidden by default, shown via toggle) -->
+        <div id="pricingScript" class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 hidden">
+            <!-- Paket Script 1 -->
+            <div class="cyber-glass p-5 rounded-xl border border-slate-700 hover:border-cyber-cyan transition-all flex flex-col justify-between">
+                <div>
+                    <span class="text-[10px] font-rajdhani font-bold px-2.5 py-1 rounded bg-cyber-cyan/10 text-cyber-cyan border border-cyber-cyan/30 inline-block mb-3">FULL SOURCE CODE</span>
+                    <h3 class="font-orbitron font-bold text-base text-white">SCRIPT STARTER BOT</h3>
+                    <div class="my-3">
+                        <span class="font-orbitron text-2xl font-black text-cyber-cyan">Rp 150.000</span>
+                        <span class="text-slate-400 text-xs">/ sekali beli</span>
+                    </div>
+                    <p class="text-slate-400 text-xs mb-4">Dapatkan file source code bot untuk dipasang mandiri.</p>
+                    <ul class="text-xs text-slate-300 space-y-2 mb-5 font-rajdhani">
+                        <li><i class="fas fa-check text-cyber-cyan mr-1.5"></i> Full Source Code Node.js / Baileys</li>
+                        <li><i class="fas fa-check text-cyber-cyan mr-1.5"></i> Hak Akses & Deploy Mandiri</li>
+                        <li><i class="fas fa-check text-cyber-cyan mr-1.5"></i> Panduan Instalasi Pterodactyl/VPS</li>
+                        <li><i class="fas fa-check text-cyber-cyan mr-1.5"></i> Free Update Minor Script</li>
+                    </ul>
+                </div>
+                <a href="https://wa.me/6285770246502?text=Halo%20Daeng%20Ashraf,%20saya%20ingin%20membeli%20*Script%20Starter%20Bot*%20(Rp%20150.000)." target="_blank" class="w-full text-center py-2.5 bg-slate-800 hover:bg-cyber-cyan hover:text-cyber-dark text-white font-orbitron font-bold text-xs rounded transition-all flex items-center justify-center gap-2">
+                    <i class="fab fa-whatsapp text-sm"></i> BELI SCRIPT STARTER
+                </a>
+            </div>
+
+            <!-- Paket Script 2 -->
+            <div class="cyber-glass p-5 rounded-xl border border-cyber-pink/50 relative flex flex-col justify-between">
+                <div>
+                    <span class="text-[10px] font-rajdhani font-bold px-2.5 py-1 rounded bg-cyber-pink/10 text-cyber-pink border border-cyber-pink/30 inline-block mb-3">FULL SOURCE CODE</span>
+                    <h3 class="font-orbitron font-bold text-base text-white">SCRIPT PRO ORGANIZATION</h3>
+                    <div class="my-3">
+                        <span class="font-orbitron text-2xl font-black text-cyber-pink">Rp 250.000</span>
+                        <span class="text-slate-400 text-xs">/ sekali beli</span>
+                    </div>
+                    <p class="text-slate-400 text-xs mb-4">Source code lengkap modul organisasi & database.</p>
+                    <ul class="text-xs text-slate-300 space-y-2 mb-5 font-rajdhani">
+                        <li><i class="fas fa-check text-cyber-pink mr-1.5"></i> Full Source Code + Database Schema</li>
+                        <li><i class="fas fa-check text-cyber-pink mr-1.5"></i> Plugin Absensi & Iuran Komunitas</li>
+                        <li><i class="fas fa-check text-cyber-pink mr-1.5"></i> Panduan Setup & Konsultasi</li>
+                        <li><i class="fas fa-check text-cyber-pink mr-1.5"></i> Bebas Modifikasi Script Sendiri</li>
+                    </ul>
+                </div>
+                <a href="https://wa.me/6285770246502?text=Halo%20Daeng%20Ashraf,%20saya%20ingin%20membeli%20*Script%20Pro%20Organization*%20(Rp%20250.000)." target="_blank" class="w-full text-center py-2.5 bg-cyber-pink hover:bg-white hover:text-cyber-dark text-white font-orbitron font-bold text-xs rounded transition-all flex items-center justify-center gap-2">
+                    <i class="fab fa-whatsapp text-sm"></i> BELI SCRIPT PRO
+                </a>
+            </div>
+
+            <!-- Paket Script 3 -->
+            <div class="cyber-glass p-5 rounded-xl border border-slate-700 hover:border-cyber-purple transition-all flex flex-col justify-between">
+                <div>
+                    <span class="text-[10px] font-rajdhani font-bold px-2.5 py-1 rounded bg-cyber-purple/10 text-cyber-purple border border-cyber-purple/30 inline-block mb-3">FULL SOURCE CODE</span>
+                    <h3 class="font-orbitron font-bold text-base text-white">SCRIPT SCHOOL ENTERPRISE</h3>
+                    <div class="my-3">
+                        <span class="font-orbitron text-2xl font-black text-cyber-purple">Rp 350.000</span>
+                        <span class="text-slate-400 text-xs">/ sekali beli</span>
+                    </div>
+                    <p class="text-slate-400 text-xs mb-4">Paket komplit source code sistem yayasan sekolah.</p>
+                    <ul class="text-xs text-slate-300 space-y-2 mb-5 font-rajdhani">
+                        <li><i class="fas fa-check text-cyber-purple mr-1.5"></i> Source Code Bot & Panel Web Sekolah</li>
+                        <li><i class="fas fa-check text-cyber-purple mr-1.5"></i> Fitur SPP, Absen, & Rekap Lengkap</li>
+                        <li><i class="fas fa-check text-cyber-purple mr-1.5"></i> Full Hak Cipta Modifikasi</li>
+                        <li><i class="fas fa-check text-cyber-purple mr-1.5"></i> Bantuan Instalasi Sampai Online</li>
+                    </ul>
+                </div>
+                <a href="https://wa.me/6285770246502?text=Halo%20Daeng%20Ashraf,%20saya%20ingin%20membeli%20*Script%20School%20Enterprise*%20(Rp%20350.000)." target="_blank" class="w-full text-center py-2.5 bg-slate-800 hover:bg-cyber-purple hover:text-white text-white font-orbitron font-bold text-xs rounded transition-all flex items-center justify-center gap-2">
+                    <i class="fab fa-whatsapp text-sm"></i> BELI SCRIPT SCHOOL
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-8 sm:py-12 px-4 max-w-3xl mx-auto z-10 relative scroll-mt-20">
+        <div class="text-center mb-6">
+            <span class="font-rajdhani text-cyber-cyan font-bold tracking-widest text-xs uppercase block">// KNOWLEDGE BASE</span>
+            <h2 class="font-orbitron text-xl sm:text-3xl font-extrabold text-white">PERTANYAAN UMUM (FAQ)</h2>
+        </div>
+
+        <div class="space-y-3 font-sans text-xs">
+            <details class="cyber-glass p-3.5 rounded-lg border border-slate-800 cursor-pointer group">
+                <summary class="font-orbitron font-bold text-white flex justify-between items-center">
+                    Apa bedanya Penyewaan Bot dan Pembelian Script?
+                    <i class="fas fa-chevron-down text-cyber-cyan text-xs group-open:rotate-180 transition-transform"></i>
+                </summary>
+                <p class="mt-2 text-slate-400 leading-relaxed"><b>Penyewaan Bot</b> artinya bot Anda langsung aktif kami jalankan di server cloud kami 24/7 tanpa perlu ribet setup. Sedangkan <b>Pembelian Script</b> berarti Anda membeli file kodenya secara putus untuk di-deploy sendiri di server Anda.</p>
+            </details>
+
+            <details class="cyber-glass p-3.5 rounded-lg border border-slate-800 cursor-pointer group">
+                <summary class="font-orbitron font-bold text-white flex justify-between items-center">
+                    Apakah perlu laptop/PC yang menyala 24 jam?
+                    <i class="fas fa-chevron-down text-cyber-cyan text-xs group-open:rotate-180 transition-transform"></i>
+                </summary>
+                <p class="mt-2 text-slate-400 leading-relaxed">Tidak perlu jika Anda menggunakan layanan Penyewaan Bot, karena sudah berjalan di server cloud kami 24/7.</p>
+            </details>
+
+            <details class="cyber-glass p-3.5 rounded-lg border border-slate-800 cursor-pointer group">
+                <summary class="font-orbitron font-bold text-white flex justify-between items-center">
+                    Apakah aman dari pemblokiran oleh WhatsApp?
+                    <i class="fas fa-chevron-down text-cyber-cyan text-xs group-open:rotate-180 transition-transform"></i>
+                </summary>
+                <p class="mt-2 text-slate-400 leading-relaxed">Sistem dilengkapi fitur Human Delay & Anti-Ban Security Guard untuk meminimalisir risiko blokir.</p>
+            </details>
+        </div>
+    </section>
+
+    <footer class="border-t border-slate-800 py-6 px-4 text-center z-10 relative bg-slate-950/80">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+            <div class="font-orbitron font-bold text-white">
+                DAENG <span class="text-cyber-cyan">ASHRAF</span> <span class="text-slate-600">// 2026</span>
+            </div>
+            <div class="font-rajdhani text-slate-400">
+                SYSTEM AI BOT WHATSAPP — ANIME TECH EDITION
+            </div>
+            <div class="flex gap-3 text-sm">
+                <a href="#" class="text-slate-400 hover:text-cyber-cyan"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-slate-400 hover:text-cyber-pink"><i class="fab fa-github"></i></a>
+                <a href="#" class="text-slate-400 hover:text-cyber-purple"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Opening Booting Animation Logic
+        window.addEventListener('DOMContentLoaded', () => {
+            const progressBar = document.getElementById('progressBar');
+            const progressPercent = document.getElementById('progressPercent');
+            const enterBtn = document.getElementById('enterBtn');
+
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 5;
+                if (progress > 100) progress = 100;
+
+                progressBar.style.width = progress + '%';
+                progressPercent.innerText = progress + '%';
+
+                if (progress === 25) document.getElementById('typeText1').classList.remove('opacity-0');
+                if (progress === 50) document.getElementById('typeText2').classList.remove('opacity-0');
+                if (progress === 75) document.getElementById('typeText3').classList.remove('opacity-0');
+                if (progress === 100) {
+                    document.getElementById('typeText4').classList.remove('opacity-0');
+                    clearInterval(interval);
+
+                    // Enable Enter Button
+                    enterBtn.disabled = false;
+                    enterBtn.className = "w-full py-3 bg-cyber-cyan hover:bg-white text-cyber-dark font-orbitron font-extrabold text-xs tracking-wider rounded transition-all flex items-center justify-center gap-2 shadow-lg neon-glow-cyan cursor-pointer";
+                    enterBtn.innerHTML = `<span>ENTER SYSTEM</span> <i class="fas fa-arrow-right text-xs"></i>`;
+                }
+            }, 80);
+        });
+
+        function closeOpening() {
+            const overlay = document.getElementById('openingOverlay');
+            overlay.classList.add('opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 700);
+        }
+
+        // Toggle Mobile Menu Drawer
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const burgerIcon = document.getElementById('burgerIcon');
+            
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                burgerIcon.classList.remove('fa-bars');
+                burgerIcon.classList.add('fa-times');
+            } else {
+                mobileMenu.classList.add('hidden');
+                burgerIcon.classList.remove('fa-times');
+                burgerIcon.classList.add('fa-bars');
+            }
+        }
+
+        // Pricing Tab Switcher Logic
+        function switchPricing(type) {
+            const btnSewa = document.getElementById('btnSewa');
+            const btnScript = document.getElementById('btnScript');
+            const pricingSewa = document.getElementById('pricingSewa');
+            const pricingScript = document.getElementById('pricingScript');
+
+            if (type === 'sewa') {
+                btnSewa.className = "px-5 py-2 rounded-lg bg-cyber-cyan text-cyber-dark font-extrabold transition-all shadow-md";
+                btnScript.className = "px-5 py-2 rounded-lg text-slate-300 hover:text-white font-extrabold transition-all";
+                pricingSewa.classList.remove('hidden');
+                pricingScript.classList.add('hidden');
+            } else {
+                btnScript.className = "px-5 py-2 rounded-lg bg-cyber-pink text-white font-extrabold transition-all shadow-md";
+                btnSewa.className = "px-5 py-2 rounded-lg text-slate-300 hover:text-white font-extrabold transition-all";
+                pricingScript.classList.remove('hidden');
+                pricingSewa.classList.add('hidden');
+            }
+        }
+
+        // Custom Request Script WhatsApp Redirect
+        function sendCustomRequest() {
+            const name = document.getElementById('custName').value.trim();
+            const detail = document.getElementById('custDetail').value.trim();
+
+            if (!name || !detail) {
+                alert('Mohon isi nama dan detail request script terlebih dahulu!');
+                return;
+            }
+
+            const message = `Halo Daeng Ashraf, saya ingin Custom Request Script Bot WA (Harga Rp 25.000).\n\nNama: *${name}*\nDetail Request: *${detail}*`;
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/6285770246502?text=${encodedMessage}`, '_blank');
+        }
+
+        // Send Review WhatsApp Redirect
+        function sendReview() {
+            const name = document.getElementById('reviewerName').value.trim();
+            const messageText = document.getElementById('reviewerMessage').value.trim();
+
+            if (!name || !messageText) {
+                alert('Mohon isi nama dan pesan ulasan terlebih dahulu!');
+                return;
+            }
+
+            const message = `Halo Daeng Ashraf, saya ingin mengirimkan ulasan/testimoni untuk website Bot WA:\n\nNama: *${name}*\nUlasan: *${messageText}*`;
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/6285770246502?text=${encodedMessage}`, '_blank');
+        }
+
+        // Particle Background Logic
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.color = Math.random() > 0.5 ? '#00f0ff' : '#ff007f';
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 40; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // Bot Simulator Chat Logic
+        const chatWindow = document.getElementById('chatWindow');
+        const chatInput = document.getElementById('chatInput');
+
+        function appendMessage(text, isUser = false) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = isUser ? 'flex justify-end' : 'flex gap-2.5 max-w-[85%]';
+            
+            if (isUser) {
+                msgDiv.innerHTML = `
+                    <div class="bg-cyber-cyan/20 border border-cyber-cyan/40 p-2.5 rounded-l-lg rounded-br-lg text-white font-sans text-xs">
+                        ${text}
+                    </div>
+                `;
+            } else {
+                msgDiv.innerHTML = `
+                    <div class="w-6 h-6 rounded bg-cyber-cyan/20 border border-cyber-cyan flex-shrink-0 flex items-center justify-center text-[10px] text-cyber-cyan">AI</div>
+                    <div class="bg-slate-900 border border-cyber-cyan/30 p-2.5 rounded-r-lg rounded-bl-lg text-slate-200">
+                        ${text}
+                    </div>
+                `;
+            }
+
+            chatWindow.appendChild(msgDiv);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+
+        function sendMessage() {
+            const text = chatInput.value.trim();
+            if (!text) return;
+
+            appendMessage(text, true);
+            chatInput.value = '';
+
+            setTimeout(() => {
+                respondBot(text.toLowerCase());
+            }, 500);
+        }
+
+        function sendQuickCommand(cmd) {
+            chatInput.value = cmd;
+            sendMessage();
+        }
+
+        function respondBot(query) {
+            let reply = '';
+            if (query.includes('katalog') || query.includes('1')) {
+                reply = `🛍️ **KATALOG UMKM / BISNIS**<br>1. Sepatu Cyberpunk - Rp 250k<br>2. Jaket Neon Tech - Rp 450k<br><i>Ketik "ORDER [Nama Produk]" untuk memesan secara otomatis!</i>`;
+            } else if (query.includes('iuran') || query.includes('organisasi')) {
+                reply = `👥 **STATUS IURAN ANGGOTA**<br>Status: **LUNAS** (Oktober 2026)<br>Total Kas Komunitas: Rp 14.500.000<br><i>Agenda Selanjutnya: Kumpul Komunitas (15 Okt).</i>`;
+            } else if (query.includes('spp') || query.includes('sekolah')) {
+                reply = `🎓 **YAYASAN SEKOLAH DIGITAL**<br>Nama Siswa: Ashraf Jr<br>Status SPP: Lunas Bulan Ini.<br>Absensi: Masuk (07:12 WIB).`;
+            } else {
+                reply = `Perintah tidak dikenali. Coba ketik: <br>• <b>!katalog</b> (Untuk Bisnis)<br>• <b>!iuran</b> (Untuk Organisasi)<br>• <b>!spp</b> (Untuk Yayasan Sekolah)`;
+            }
+            appendMessage(reply, false);
+        }
+
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+    </script>
+</body>
+</html>
