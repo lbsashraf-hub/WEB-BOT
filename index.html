@@ -770,49 +770,7 @@
                 pricingSewa.classList.add('hidden');
             }
         }
-
-        // Custom Request Script WhatsApp Redirect (Diperbaiki)
-        function sendCustomRequest() {
-            const nameInput = document.getElementById('custName');
-            const detailInput = document.getElementById('custDetail');
-            
-            const name = nameInput ? nameInput.value.trim() : '';
-            const detail = detailInput ? detailInput.value.trim() : '';
-
-            if (!name || !detail) {
-                alert('Mohon isi nama dan detail request script terlebih dahulu!');
-                return;
-            }
-
-            const message = `Halo Daeng Ashraf, saya ingin Custom Request Script Bot WA (Harga Rp 25.000).\n\nNama: *${name}*\nDetail Request: *${detail}*`;
-            
-            // Menggunakan encodeURIComponent dengan aman
-            const waUrl = `https://wa.me/6285770246502?text=${encodeURIComponent(message)}`;
-            
-            // Membuka WhatsApp di tab baru dengan aman
-            window.open(waUrl, '_blank');
-        }
-
-        // Send Review WhatsApp Redirect (Diperbaiki)
-        function sendReview() {
-            const nameInput = document.getElementById('reviewerName');
-            const messageInput = document.getElementById('reviewerMessage');
-
-            const name = nameInput ? nameInput.value.trim() : '';
-            const messageText = messageInput ? messageInput.value.trim() : '';
-
-            if (!name || !messageText) {
-                alert('Mohon isi nama dan pesan ulasan terlebih dahulu!');
-                return;
-            }
-
-            const message = `Halo Daeng Ashraf, saya ingin mengirimkan ulasan/testimoni untuk website Bot WA:\n\nNama: *${name}*\nUlasan: *${messageText}*`;
-            
-            const waUrl = `https://wa.me/6285770246502?text=${encodeURIComponent(message)}`;
-            
-            window.open(waUrl, '_blank');
-        }
-
+t
         // Particle Background Logic
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
