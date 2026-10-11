@@ -345,9 +345,10 @@
                     <textarea id="custDetail" rows="4" placeholder="Jelaskan detail fitur script yang ingin dibuat (contoh: Buatkan plugin command .cekresi JNE/JNT atau fitur sambutan grup otomatis)..." class="w-full bg-slate-950 border border-slate-700 focus:border-cyber-green rounded-lg px-3.5 py-2.5 text-white outline-none resize-none transition-all"></textarea>
                 </div>
 
-                <button onclick="sendCustomRequest()" class="w-full py-3 bg-cyber-green hover:bg-white text-cyber-dark font-orbitron font-extrabold text-xs tracking-wider rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer">
+                <!-- TOMBOL DIUBAH JADI TAG <a> AGAR TIDAK MENTAL OLEH BROWSER -->
+                <a href="javascript:void(0)" onclick="sendCustomRequest()" class="w-full py-3 bg-cyber-green hover:bg-white text-cyber-dark font-orbitron font-extrabold text-xs tracking-wider rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer">
                     <i class="fab fa-whatsapp text-base"></i> <span>KIRIM REQUEST SCRIPT (RP 25RB)</span>
-                </button>
+                </a>
             </div>
         </div>
     </section>
@@ -480,9 +481,10 @@
                     <label class="block font-orbitron text-slate-300 mb-1 font-semibold">Pesan Ulasan / Testimoni</label>
                     <textarea id="reviewerMessage" rows="3" placeholder="Tuliskan pengalaman Anda menggunakan bot atau layanan Daeng Ashraf..." class="w-full bg-slate-950 border border-slate-700 focus:border-cyber-cyan rounded px-3 py-2 text-white outline-none resize-none"></textarea>
                 </div>
-                <button onclick="sendReview()" class="w-full py-2.5 bg-cyber-cyan hover:bg-white text-cyber-dark font-orbitron font-bold text-xs rounded transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md">
+                <!-- TOMBOL DIUBAH JADI TAG <a> AGAR TIDAK MENTAL OLEH BROWSER -->
+                <a href="javascript:void(0)" onclick="sendReview()" class="w-full py-2.5 bg-cyber-cyan hover:bg-white text-cyber-dark font-orbitron font-bold text-xs rounded transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md">
                     <i class="fab fa-whatsapp text-sm"></i> <span>KIRIM ULASAN VIA WHATSAPP</span>
-                </button>
+                </a>
             </div>
         </div>
     </section>
@@ -770,7 +772,39 @@
                 pricingSewa.classList.add('hidden');
             }
         }
-t
+
+        // Custom Request Script WhatsApp Redirect (Diperbaiki agar tidak mental)
+        function sendCustomRequest() {
+            const name = document.getElementById('custName').value.trim();
+            const detail = document.getElementById('custDetail').value.trim();
+
+            if (!name || !detail) {
+                alert('Mohon isi nama dan detail request script terlebih dahulu!');
+                return;
+            }
+
+            const message = `Halo Daeng Ashraf, saya ingin Custom Request Script Bot WA (Harga Rp 25.000).\n\nNama: *${name}*\nDetail Request: *${detail}*`;
+            const waUrl = `https://api.whatsapp.com/send?phone=6285770246502&text=${encodeURIComponent(message)}`;
+            
+            window.location.href = waUrl;
+        }
+
+        // Send Review WhatsApp Redirect (Diperbaiki agar tidak mental)
+        function sendReview() {
+            const name = document.getElementById('reviewerName').value.trim();
+            const messageText = document.getElementById('reviewerMessage').value.trim();
+
+            if (!name || !messageText) {
+                alert('Mohon isi nama dan pesan ulasan terlebih dahulu!');
+                return;
+            }
+
+            const message = `Halo Daeng Ashraf, saya ingin mengirimkan ulasan/testimoni untuk website Bot WA:\n\nNama: *${name}*\nUlasan: *${messageText}*`;
+            const waUrl = `https://api.whatsapp.com/send?phone=6285770246502&text=${encodeURIComponent(message)}`;
+            
+            window.location.href = waUrl;
+        }
+
         // Particle Background Logic
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
@@ -884,3 +918,4 @@ t
     </script>
 </body>
 </html>
+                    
